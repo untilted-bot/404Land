@@ -69,6 +69,6 @@ Ce site peut être publié gratuitement avec **GitHub Pages** :
 ## 📜 Licence
 
 Projet open-source, libre à utiliser, modifier et partager.  
-Crée par **[Ton Nom ou Pseudo]**.
+Crée par **[untilted-bot]**.
 
 ( générer par Chat gpt parce que j'avais la flemmmmmmme )
