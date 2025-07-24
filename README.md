@@ -60,9 +60,7 @@ Ce site peut être publié gratuitement avec **GitHub Pages** :
 
 ## 🧩 À venir
 
-- Exporter/Importer les inventions
-- Design personnalisé par utilisateur
-- Hébergement avec base de données (optionnel)
+- Ajout de nouvelles idées (ce site est fait poour les gens qui ont lu jusqu'ici 😉)
 
 ---
 
@@ -71,4 +69,4 @@ Ce site peut être publié gratuitement avec **GitHub Pages** :
 Projet open-source, libre à utiliser, modifier et partager.  
 Crée par **[untilted-bot]**.
 
-( générer par Chat gpt parce que j'avais la flemmmmmmme )
+( générer par Chat gpt parce que j'avais la flemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmme )
