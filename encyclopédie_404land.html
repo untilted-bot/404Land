@@ -1,102 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>THE LAND OF NON-EXISTENCE</title>
   <style>
     body {
-      background: #111;
-      color: #eee;
+      margin: 0;
+      background: radial-gradient(#1a1a2e, #0f0f1f);
+      color: #f0f0f0;
       font-family: 'Courier New', monospace;
       text-align: center;
-      padding: 40px;
+      padding: 40px 20px;
     }
     h1 {
-      font-size: 28px;
-      border: 2px solid #eee;
-      padding: 10px;
+      font-size: 30px;
+      padding: 15px;
+      border: 3px double #999;
       display: inline-block;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    p {
+      margin-bottom: 40px;
+      font-style: italic;
+      color: #ccc;
     }
     button {
-      margin: 10px;
-      padding: 10px 20px;
-      background: #222;
+      background-color: #333;
       color: white;
-      border: 1px solid #555;
+      border: 2px solid #555;
+      padding: 10px 20px;
+      margin: 10px;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #555;
+      transform: scale(1.05);
     }
     input, textarea {
-      margin-top: 10px;
       width: 80%;
-      padding: 8px;
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
       background: #222;
-      color: white;
-      border: 1px solid #444;
+      color: #fff;
+      border-bottom: 2px solid #666;
     }
     .invention {
-      margin: 10px 0;
-      background: #222;
-      padding: 10px;
-      border: 1px solid #444;
+      margin: 15px auto;
+      padding: 15px;
+      background: #1e1e2e;
+      border-left: 4px solid #8a2be2;
+      max-width: 700px;
+      text-align: left;
     }
   </style>
 </head>
 <body>
 
   <h1>THE LAND OF NON-EXISTENCE</h1>
-  <p>Un monde d’objets imaginaires et de lois absurdes</p>
+  <p>Une encyclopédie participative des objets impossibles, des lois absurdes et des idées poétiques.</p>
 
   <div>
-    <button onclick="ajouterInvention()">Ajouter une invention</button>
-    <button onclick="afficherInventions()">Voir les inventions</button>
-    <button onclick="genererAleatoire()">Invention aléatoire</button>
+    <button onclick="ajouterInvention()">➕ Ajouter une invention</button>
+    <button onclick="afficherInventions()">📚 Voir les inventions</button>
+    <button onclick="genererAleatoire()">🎲 Invention aléatoire</button>
   </div>
 
   <div id="zone-interaction"></div>
 
   <script>
-    let entrees = JSON.parse(localStorage.getItem('inventions')) || [];
+    let entrees = JSON.parse(localStorage.getItem('inventions404land')) || [];
 
     function sauvegarder() {
-      localStorage.setItem('inventions', JSON.stringify(entrees));
+      localStorage.setItem('inventions404land', JSON.stringify(entrees));
     }
 
     function ajouterInvention() {
-      const zone = document.getElementById('zone-interaction');
-      zone.innerHTML = `
-        <h2>Ajouter une invention</h2>
-        <input id="titre" placeholder="Titre"><br>
-        <textarea id="desc" placeholder="Description"></textarea><br>
+      document.getElementById('zone-interaction').innerHTML = `
+        <h2>Ajoute ton invention</h2>
+        <input id="titre" placeholder="Titre imaginaire"><br>
+        <textarea id="desc" placeholder="Décris cette merveille absurde..."></textarea><br>
         <button onclick="validerInvention()">Valider</button>
       `;
     }
 
     function validerInvention() {
-      const titre = document.getElementById('titre').value;
-      const desc = document.getElementById('desc').value;
+      const titre = document.getElementById('titre').value.trim();
+      const desc = document.getElementById('desc').value.trim();
       if (titre && desc) {
         entrees.push(`${titre} : ${desc}`);
         sauvegarder();
-        alert("Invention ajoutée !");
+        alert("Invention ajoutée au monde irréel !");
+        afficherInventions();
+      } else {
+        alert("Merci de remplir les deux champs.");
       }
     }
 
     function afficherInventions() {
       const zone = document.getElementById('zone-interaction');
-      zone.innerHTML = `<h2>Liste des inventions</h2>`;
+      zone.innerHTML = "<h2>Inventions collectées</h2>";
+      if (entrees.length === 0) {
+        zone.innerHTML += "<p>Aucune invention pour l’instant... Ajoute la première !</p>";
+      }
       entrees.forEach((e, i) => {
-        zone.innerHTML += `<div class="invention">${i + 1}. ${e}</div>`;
+        zone.innerHTML += `<div class="invention"><strong>${i + 1}.</strong> ${e}</div>`;
       });
     }
 
     function genererAleatoire() {
-      const objets = ["Baguette quantique", "Poisson jugeur", "Chapeau à idées", "Stylo à rêves"];
-      const adjectifs = ["invisible", "à double mie", "qui vole", "qui parle"];
-      const concepts = ["Loi de la gravité inversée", "Langue des nuages", "Animal qui pense à l'envers"];
+      const objets = ["Baguette quantique", "Poisson jugeur", "Chapeau à idées", "Stylo à rêves", "Crayon en boucle", "Pantoufle oraculaire"];
+      const adjectifs = ["invisible", "à double mie", "qui vole", "qui parle", "autosuffisant", "sensible aux rêves"];
+      const concepts = ["Loi de la gravité inversée", "Langue des nuages", "Animal qui pense à l'envers", "Temps qui coule à l'envers", "Mémoire en spirale", "Mathématiques impossibles"];
       const titre = `${objets[Math.floor(Math.random() * objets.length)]} ${adjectifs[Math.floor(Math.random() * adjectifs.length)]}`;
       const desc = `${concepts[Math.floor(Math.random() * concepts.length)]}.`;
-      const zone = document.getElementById('zone-interaction');
-      zone.innerHTML = `<h2>Invention aléatoire</h2><div class="invention">${titre} - ${desc}</div>`;
+      document.getElementById('zone-interaction').innerHTML = `
+        <h2>✨ Invention aléatoire</h2>
+        <div class="invention">${titre} — ${desc}</div>
+      `;
     }
   </script>
 
