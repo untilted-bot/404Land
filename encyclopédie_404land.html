@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>THE LAND OF NON-EXISTENCE</title>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 28px;
+      border: 2px solid #eee;
+      padding: 10px;
+      display: inline-block;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background: #222;
+      color: white;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
+    input, textarea {
+      margin-top: 10px;
+      width: 80%;
+      padding: 8px;
+      background: #222;
+      color: white;
+      border: 1px solid #444;
+    }
+    .invention {
+      margin: 10px 0;
+      background: #222;
+      padding: 10px;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>THE LAND OF NON-EXISTENCE</h1>
+  <p>Un monde d’objets imaginaires et de lois absurdes</p>
+
+  <div>
+    <button onclick="ajouterInvention()">Ajouter une invention</button>
+    <button onclick="afficherInventions()">Voir les inventions</button>
+    <button onclick="genererAleatoire()">Invention aléatoire</button>
+  </div>
+
+  <div id="zone-interaction"></div>
+
+  <script>
+    let entrees = JSON.parse(localStorage.getItem('inventions')) || [];
+
+    function sauvegarder() {
+      localStorage.setItem('inventions', JSON.stringify(entrees));
+    }
+
+    function ajouterInvention() {
+      const zone = document.getElementById('zone-interaction');
+      zone.innerHTML = `
+        <h2>Ajouter une invention</h2>
+        <input id="titre" placeholder="Titre"><br>
+        <textarea id="desc" placeholder="Description"></textarea><br>
+        <button onclick="validerInvention()">Valider</button>
+      `;
+    }
+
+    function validerInvention() {
+      const titre = document.getElementById('titre').value;
+      const desc = document.getElementById('desc').value;
+      if (titre && desc) {
+        entrees.push(`${titre} : ${desc}`);
+        sauvegarder();
+        alert("Invention ajoutée !");
+      }
+    }
+
+    function afficherInventions() {
+      const zone = document.getElementById('zone-interaction');
+      zone.innerHTML = `<h2>Liste des inventions</h2>`;
+      entrees.forEach((e, i) => {
+        zone.innerHTML += `<div class="invention">${i + 1}. ${e}</div>`;
+      });
+    }
+
+    function genererAleatoire() {
+      const objets = ["Baguette quantique", "Poisson jugeur", "Chapeau à idées", "Stylo à rêves"];
+      const adjectifs = ["invisible", "à double mie", "qui vole", "qui parle"];
+      const concepts = ["Loi de la gravité inversée", "Langue des nuages", "Animal qui pense à l'envers"];
+      const titre = `${objets[Math.floor(Math.random() * objets.length)]} ${adjectifs[Math.floor(Math.random() * adjectifs.length)]}`;
+      const desc = `${concepts[Math.floor(Math.random() * concepts.length)]}.`;
+      const zone = document.getElementById('zone-interaction');
+      zone.innerHTML = `<h2>Invention aléatoire</h2><div class="invention">${titre} - ${desc}</div>`;
+    }
+  </script>
+
+</body>
+</html>
